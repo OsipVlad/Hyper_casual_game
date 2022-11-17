@@ -6,7 +6,7 @@ public class Level : MonoBehaviour
 {
     public System.Action OnStartNewLevel;
     public System.Action<Level> OnFinishLevel;
-
+    private float level_fast = 200f;
     private RectTransform rect;
     private Image image;
     private bool newLevelFired;
@@ -21,27 +21,24 @@ public class Level : MonoBehaviour
         image = GetComponent<Image>();
         rect = GetComponent<RectTransform>(); 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if(GameController.Instance.State == GameController.GameState.PLAY)
         {
-            AncoredPosition += 400 * Time.deltaTime * Vector2.down;
+            AncoredPosition += level_fast * Time.deltaTime * Vector2.down;
+            level_fast += 0.01f;
         }
+
     }
 
     private void LateUpdate()
     {
-        if(!newLevelFired && AncoredPosition.y < 500)
+        if(!newLevelFired && AncoredPosition.y < 200)
         {
             OnStartNewLevel?.Invoke();
             newLevelFired = true;
+            
         }
         if(AncoredPosition.y < -Size.y - 100)
         {

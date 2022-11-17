@@ -11,12 +11,14 @@ public class GameController : MonoBehaviour
     public event System.Action<int> OnCurrentLevelChanged;
     public event System.Action<int> OnScoreChanged;
 
+
     private GameState state;
     private int currentLevel;
     private int score;
     [SerializeField] private Transform levelRegion = null;
     [SerializeField] private Level LevelPrefab = null;
     [SerializeField] private List<Color> colors = new List<Color>();
+    [SerializeField] private Player player;
     private List<Level> levels = new List<Level>();
     private List<GameObject> ObstaclePrefabs;
 
@@ -43,7 +45,40 @@ public class GameController : MonoBehaviour
             levels.Add(SpawnNewLevel());
         }
         ResetLevels();
+        player.OnGameOver += GameOver;
+    }
+
+    private void GameOver()
+    {
+        State = GameState.LOSE;
+        StartCoroutine(DelayAction(1.5f, () =>
+        {
+            State = GameState.GAME_OVER;
+            ResetGame();
+            
+        }));
+    }
+    public void ResetGame()
+    {
+        ClearObstacle();
+        ResetLevels();
+        player.Reset();
         
+    }
+
+    private void ClearObstacle()
+    {
+        Score = 0;
+        foreach(Transform child in spawnRegion.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    private IEnumerator DelayAction(float delay, System.Action action)
+    {
+        yield return new WaitForSeconds(delay);
+        action();
     }
 
     private void ResetLevels()
@@ -70,6 +105,7 @@ public class GameController : MonoBehaviour
 
     private void MoveLevelToTop(Level level)
     {
+        CurrentLevel++;
         level.Setup(new Vector3(0, lastLevel.AncoredPosition.y + lastLevel.Size.y),
             colors[CurrentLevel % colors.Count], CurrentLevel);
         lastLevel = level;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    private float obstacle_fast = 1.5f;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,8 @@ public class Obstacle : MonoBehaviour
     {
         if(rb.bodyType == RigidbodyType2D.Kinematic && GameController.Instance.State == GameController.GameState.PLAY)
         {
-            transform.localPosition += Vector3.down * Time.deltaTime * 3.5f;
+            transform.localPosition += Vector3.down * Time.deltaTime * obstacle_fast;
+            obstacle_fast += 0.001f;
         }
         if(transform.position.y < -8 || transform.position.x > 6 || transform.position.x < -6)
         {
