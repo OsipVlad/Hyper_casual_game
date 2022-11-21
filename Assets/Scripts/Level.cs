@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class Level : MonoBehaviour
@@ -10,7 +8,6 @@ public class Level : MonoBehaviour
     private RectTransform rect;
     private Image image;
     private bool newLevelFired;
-    [SerializeField] Text levelText;
 
     public Vector2 AncoredPosition { get { return rect.anchoredPosition; } set { rect.anchoredPosition = value; } }
     public Vector2 Size { get { return rect.sizeDelta; } set { rect.sizeDelta = value; } }
@@ -34,13 +31,17 @@ public class Level : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(!newLevelFired && AncoredPosition.y < 200)
+        if(GameController.Instance.State == GameController.GameState.GAME_OVER)
+        {
+            level_fast = 200f;
+        }
+        if(!newLevelFired && AncoredPosition.y < 400)
         {
             OnStartNewLevel?.Invoke();
             newLevelFired = true;
             
         }
-        if(AncoredPosition.y < -Size.y - 100)
+        if(AncoredPosition.y < -Size.y - 200)
         {
             OnFinishLevel?.Invoke(this);
         }
@@ -48,9 +49,9 @@ public class Level : MonoBehaviour
 
     public void Setup(Vector3 pos, Color color, int level)
     {
+        
         newLevelFired = false;
         AncoredPosition = pos;
         BackColor = color;
-        levelText.text = level.ToString();
     }
 }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +22,7 @@ public class UIController : MonoBehaviour
         gameOverObj.SetActive(state == GameController.GameState.GAME_OVER);
         ShowLevelAndScore(state == GameController.GameState.PLAY || state == GameController.GameState.GAME_OVER);
         protection.gameObject.SetActive(state == GameController.GameState.PLAY);
+
     }
 
     private void ShowLevelAndScore(bool show)

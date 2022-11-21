@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
@@ -15,7 +13,11 @@ public class Obstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rb.bodyType == RigidbodyType2D.Kinematic && GameController.Instance.State == GameController.GameState.PLAY)
+        if (GameController.Instance.State == GameController.GameState.GAME_OVER)
+        {
+            obstacle_fast = 1.5f;
+        }
+        if (rb.bodyType == RigidbodyType2D.Kinematic && GameController.Instance.State == GameController.GameState.PLAY)
         {
             transform.localPosition += Vector3.down * Time.deltaTime * obstacle_fast;
             obstacle_fast += 0.001f;

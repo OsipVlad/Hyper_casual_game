@@ -50,11 +50,12 @@ public class GameController : MonoBehaviour
 
     private void GameOver()
     {
+        
         State = GameState.LOSE;
         StartCoroutine(DelayAction(1.5f, () =>
         {
+            ClearObstacle();
             State = GameState.GAME_OVER;
-            ResetGame();
             
         }));
     }
@@ -63,12 +64,13 @@ public class GameController : MonoBehaviour
         ClearObstacle();
         ResetLevels();
         player.Reset();
+        StartGame();
         
     }
 
     private void ClearObstacle()
     {
-        Score = 0;
+        
         foreach(Transform child in spawnRegion.transform)
         {
             Destroy(child.gameObject);
@@ -83,6 +85,8 @@ public class GameController : MonoBehaviour
 
     private void ResetLevels()
     {
+        CurrentLevel = 0;
+        Score = 0;
         levels[0].AncoredPosition = new Vector2(0, -levels[0].Size.y / 2);
         for(int i = 1; i < levels.Count; i++)
         {
@@ -99,7 +103,7 @@ public class GameController : MonoBehaviour
         level.Size = new Vector2(levelRegion.parent.GetComponent<RectTransform>().sizeDelta.x,
             levelRegion.parent.GetComponent<RectTransform>().sizeDelta.y * 2);
         level.OnFinishLevel += MoveLevelToTop;
-        level.OnStartNewLevel += () => { CurrentLevel++; };
+        //level.OnStartNewLevel += () => { CurrentLevel++; };
         return level;
     }
 

@@ -244,7 +244,7 @@ MonoBehaviour:
   protection: {fileID: 1096817857}
   scoreText: {fileID: 1151421441}
   levelText: {fileID: 1492533216}
-  gameOverScoreText: {fileID: 1151421441}
+  gameOverScoreText: {fileID: 485103621}
 --- !u!114 &222640015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,7 +444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: -89}
+  m_AnchoredPosition: {x: 5, y: -131}
   m_SizeDelta: {x: 160, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
@@ -568,7 +568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6, y: -146}
+  m_AnchoredPosition: {x: 6, y: -266}
   m_SizeDelta: {x: 250, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &826662883
@@ -617,7 +617,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2027493560}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: ResetGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1028,7 +1028,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.9529412, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1788,7 +1788,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989072089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10.51, z: 0}
+  m_LocalPosition: {x: 0, y: 12.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1912,9 +1912,9 @@ MonoBehaviour:
   - {r: 0.13428265, g: 0.18278013, b: 0.7735849, a: 1}
   - {r: 0.14158058, g: 0.7735849, b: 0.17528746, a: 1}
   - {r: 0.9433962, g: 0.8332062, b: 0.11035952, a: 1}
-  - {r: 0.03147021, g: 0.9442877, b: 0.9811321, a: 1}
+  - {r: 0.6886792, g: 0.20400496, b: 0.6578433, a: 1}
   - {r: 0.9056604, g: 0.11448912, b: 0.7546093, a: 1}
-  - {r: 0.9245283, g: 0.12316773, b: 0.08198643, a: 1}
+  - {r: 0.9254902, g: 0.8332089, b: 0.08235295, a: 1}
   - {r: 0.6300201, g: 0.0665183, b: 0.9528302, a: 1}
   player: {fileID: 1046186526}
   spawnRegion: {fileID: 1989072090}
